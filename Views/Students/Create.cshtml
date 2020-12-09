@@ -23,11 +23,6 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
-                <label asp-for="Shift" class="control-label"></label>
-                <select asp-for="Shift" asp-items="Html.GetEnumSelectList<Student.EShift>()" class="form-control"></select>
-                <span asp-validation-for="Shift" class="text-danger"></span>
-            </div>*@
 
             <div class="form-group">
                 <label asp-for="Shift" class="control-label"></label>
@@ -44,9 +39,9 @@
                 <label asp-for="IsMarried" class="control-label"></label>
                 <div class="border form-control">
                     Yes
-                    <input asp-for="IsMarried" value="1" type="radio">
+                    <input asp-for="IsMarried" value=true type="radio">
                     No
-                    <input asp-for="IsMarried" value="0" type="radio" checked>
+                    <input asp-for="IsMarried" value=false type="radio" checked>
                 </div>
             </div>
 

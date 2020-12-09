@@ -15,5 +15,7 @@ namespace AllPrackticsUsingCore.Data
         }
 
         public DbSet<AllPrackticsUsingCore.Models.Student> Student { get; set; }
+
+        public DbSet<AllPrackticsUsingCore.Models.BedInformation> BedInformation { get; set; }
     }
 }

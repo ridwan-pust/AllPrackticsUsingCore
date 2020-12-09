@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<AllPrackticsUsingCore.DBModels.DivList>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,146 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        <label><b>Division Name : </b></label>
+        <select name="dvlist" id="dvlist" class="form-control">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select><br />
+        <label><b>District Name : </b></label>
+        <select name="dslist" id="dslist" class="form-control">
+        </select><br />
+        <label><b>Upazila Name : </b></label>
+        <select name="upzlist" id="upzlist" class="form-control">
+        </select><br />
+
+    </div>
+    <div class="col-md-6">
+        <div id="divLoader" style="display:none;"> <img src="https://media.giphy.com/media/MDrmyLuEV8XFOe7lU6/giphy.gif" alt="Loader" /> </div>
+        <div>
+            <h4 id="msg" class="text-danger"></h4><br />
+            <label>Upazila Name :</label>
+            <input type="text" id="upzname" class="form-control" value="" /><br />
+            <button type="button" id="btnAdd" class="btn btn-success">Save</button>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{ 
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#dvlist').change(function () {
+
+                let did = $('#dvlist option:selected').val();
+                let dn = $('#dvlist option:selected').text();
+
+                console.log(dn + ' : ' + did);
+
+                $.ajax({
+
+                    url: '/home/getDistrict/' + did,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function (res) {
+                        console.log(res);
+                        $('#dslist').empty();
+                        $.each(res.mydata, function (index, value) {
+                            let s = '<option value="' + value.id + '">' + value.name + '</option>';
+                            console.log(s);
+                            $('#dslist').append(s);
+                        });
+                    }
+                });
+
+            });
+
+            $('#dslist').change(function () {
+                let upzid = $('#dslist option:selected').val();
+
+                $.ajax({
+                    url: '/home/getUpazila/',
+                    type: 'GET',
+                    dataType: 'JSON',
+                    data: { id: upzid },
+                    success: function (data) {
+                        console.log(data);
+                        $('#upzlist').empty();
+                        $.each(data.mydata, function (i, obj) {
+                            let s = '<option value="' + obj.id + '">' + obj.name + '</option>';
+                            $('#upzlist').append(s);
+                        });
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+
+            $('#btnAdd').click(function () {
+                $("#divLoader").show();  
+
+                let dsid = $('#dslist option:selected').val();
+                //alert(dsid);
+                let upzname = $('#upzname').val();
+                if (dsid == undefined) {
+                    $("#divLoader").hide();  
+                    alert('Please select a District.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/home/SaveUpazila',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: { dsid: dsid, upzname: upzname },
+                    success: function (data) {
+                        console.log(data);
+                        $('#msg').html('');
+                        $('#msg').show();
+                        if (data.result === 'ok') {
+                            $("#divLoader").hide();  
+                            $('#msg').html(data.message);
+                            $('#msg').fadeOut(7000);
+                        }
+                        else {
+                            $("#divLoader").hide();
+                            $('#msg').html(data.message);
+                            $('#msg').fadeOut(7000);
+                        }
+                    },
+                    error: function (err) {
+                        $("#divLoader").hide();  
+
+                        console.log(err);
+                    }
+                });
+
+            });
+
+
+
+
+
+        });
+
+
+    </script>
+
+
+} 
+
