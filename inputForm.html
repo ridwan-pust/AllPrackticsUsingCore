@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Form Page</title>
+</head>
+<body>
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Students/Create" method="post">
+            
+            <div class="form-group">
+                <label class="control-label" for="Name">Name</label>
+                <input class="form-control" type="text" data-val="true" data-val-required="The Name field is required." id="Name" name="Name" value="" />
+                <span class="text-danger field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Gender">Gender</label>
+                <select class="form-control" id="Gender" name="Gender">
+				     <option value="0">Male</option>
+                     <option value="1">female</option>
+                </select>
+                <span class="text-danger field-validation-valid" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label" for="Shift">Shift</label>
+                <select class="form-control" id="Shift" name="Shift">
+                    <option value="">Select Shift</option>
+                    <option>Morning</option>
+                    <option>Day</option>
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" data-val="true" data-val-required="The IsResidential field is required." id="IsResidential" name="IsResidential" value="true" /> IsResidential
+                </label>
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label" for="IsMarried">IsMarried</label>
+                <div class="border form-control">
+                    Yes
+                    <input value="true" type="radio" data-val="true" data-val-required="The IsMarried field is required." id="IsMarried" name="IsMarried">
+                    No
+                    <input value="false" type="radio" checked id="IsMarried" name="IsMarried">
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label " for="Nationality">Nationality</label>
+                <div class=" border form-control ">
+                    Bangladeshi
+                    <input id="Nationality" name="Nationality" type="radio" value="Bangladeshi" />
+                    Forign
+                    <input id="Nationality" name="Nationality" type="radio" value="Forign" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="Picture">Picture</label>
+                <input type="file" name="files" multiple class="form-control" id="Picture" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="Image">Image</label>
+                <input type="file" class="form-control" id="Image" name="Image" />
+                <span class="text-danger field-validation-valid" data-valmsg-for="Image" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8LwSy8JYhvJBvWgKhCapHBQgV6hPuukFyk9VBwgjnAzLefDxO9ORmzoZ_JNxIcBer1GMKyKijP4ssNRx6kDvbWFIYB88RwcmYk_9EI36binseUph10bDqgT9ZYn2JeWVsQnzQlNMBJU00Q6HcCIgSz8" /><input name="IsResidential" type="hidden" value="false" /></form>
+    </div>
+</div>
+
+<div>
+    <a href="/Students">Back to List</a>
+</div>
+
+</body>
+</html>
