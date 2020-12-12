@@ -1,0 +1,37 @@
+﻿@model  IEnumerable<RDLC.Models.district>
+@{
+    ViewBag.Title = "Report";
+}
+<h2>Report</h2>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Mobile
+        </th>
+        <th>
+            Address
+        </th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(m=>item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.DivListID)
+        </td>
+    </tr>
+}
+</table>
+<div style="padding:10px; border:1px solid black">
+    <div><a href="@Url.Action("GenerateReport", new {typeOfReport="PDF"})">Get Report PDF</a></div>
+    <div><a href="@Url.Action("GenerateReport", new {typeOfReport="Excel"})">Get Report EXCEL</a></div>
+    <div><a href="@Url.Action("GenerateReport", new {typeOfReport="WORD"})">Get Report WORD</a></div>
+    <div><a href="@Url.Action("GenerateReport", new {typeOfReport="IMAGE"})">Get Report IMAGE</a></div>
+</div>
