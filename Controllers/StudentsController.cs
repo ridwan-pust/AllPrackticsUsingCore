@@ -25,6 +25,17 @@ namespace AllPrackticsUsingCore.Controllers
             return View(await _context.Student.ToListAsync());
         }
 
+        public JsonResult GetStudent(int id)
+        {
+            if (StudentExists(id))
+            {
+                return Json(new { mgs="ok",data=_context.Student.FirstOrDefault(m=>m.Id==id) });
+            }
+
+           return  Json(new { mgs="not found"});
+        }
+
+
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -149,5 +160,6 @@ namespace AllPrackticsUsingCore.Controllers
         {
             return _context.Student.Any(e => e.Id == id);
         }
+
     }
 }

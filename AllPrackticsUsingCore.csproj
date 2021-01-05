@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="other project\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="other project\Report.cshtml" />
+    <Content Remove="other project\StudentReport.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
@@ -17,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="DBModels\" />
+    <Folder Include="other project\" />
   </ItemGroup>
 
 </Project>

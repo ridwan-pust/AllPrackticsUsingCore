@@ -1,6 +1,7 @@
 ﻿using AllPrackticsUsingCore.DBModels;
 using AllPrackticsUsingCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,6 @@ namespace AllPrackticsUsingCore.Controllers
 
         public IActionResult Index()
         {
-            
             return View(_context.DivList.OrderBy(x => x.Name).ToList());
         }
 
@@ -85,11 +85,6 @@ namespace AllPrackticsUsingCore.Controllers
 
             return Json(new { result = "ok", message = "Upazila info is saved successfully." });
         }
-
-
-
-
-
 
 
         public IActionResult Privacy()
